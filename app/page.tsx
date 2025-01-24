@@ -1,56 +1,36 @@
-import { Link } from "@heroui/link";
-import { Snippet } from "@heroui/snippet";
-import { Code } from "@heroui/code";
-import { button as buttonStyles } from "@heroui/theme";
+'use client';
 
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
+import FormDatePicker from '@/components/form/date-picker';
+import FormInput from '@/components/form/input';
+import FormSelect from '@/components/form/select';
+import FormTextArea from '@/components/form/text-area';
+import { useForm } from 'react-hook-form';
+
+export const animals = [
+  { key: 'cat', label: 'Cat' },
+  { key: 'dog', label: 'Dog' },
+  { key: 'elephant', label: 'Elephant' },
+  { key: 'lion', label: 'Lion' },
+  { key: 'tiger', label: 'Tiger' },
+  { key: 'giraffe', label: 'Giraffe' },
+  { key: 'dolphin', label: 'Dolphin' },
+  { key: 'penguin', label: 'Penguin' },
+  { key: 'zebra', label: 'Zebra' },
+  { key: 'shark', label: 'Shark' },
+  { key: 'whale', label: 'Whale' },
+  { key: 'otter', label: 'Otter' },
+  { key: 'crocodile', label: 'Crocodile' },
+];
 
 export default function Home() {
+  const { control } = useForm();
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="inline-block max-w-xl text-center justify-center">
-        <span className={title()}>Make&nbsp;</span>
-        <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
-        <br />
-        <span className={title()}>
-          websites regardless of your design experience.
-        </span>
-        <div className={subtitle({ class: "mt-4" })}>
-          Beautiful, fast and modern React UI library.
-        </div>
-      </div>
-
-      <div className="flex gap-3">
-        <Link
-          isExternal
-          className={buttonStyles({
-            color: "primary",
-            radius: "full",
-            variant: "shadow",
-          })}
-          href={siteConfig.links.docs}
-        >
-          Documentation
-        </Link>
-        <Link
-          isExternal
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={siteConfig.links.github}
-        >
-          <GithubIcon size={20} />
-          GitHub
-        </Link>
-      </div>
-
-      <div className="mt-8">
-        <Snippet hideCopyButton hideSymbol variant="bordered">
-          <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
-          </span>
-        </Snippet>
-      </div>
-    </section>
+    <>
+      <FormInput control={control} />
+      <FormTextArea control={control} />
+      <FormSelect options={animals} control={control} />
+      <FormDatePicker control={control} />
+      <FormInput control={control} type="url" label="Link" />
+    </>
   );
 }
