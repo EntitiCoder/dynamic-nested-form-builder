@@ -11,12 +11,19 @@ const FormTextArea = ({ name, control, ...props }: FormTextAreaProps) => {
     <Controller
       name={name}
       control={control}
-      render={({ field }) => (
-        <Textarea
-          className="md:max-w-[300px]"
-          placeholder="Type something..."
-          {...props}
-        />
+      render={({
+        field: { onChange, onBlur, value, ref },
+        fieldState: { error, invalid },
+      }) => (
+        <div>
+          <Textarea
+            className="md:w-[300px]"
+            onChange={onChange}
+            placeholder="Type something..."
+            {...props}
+          />
+          <div className="text-red-600 text-sm mt-2 ml-2">{error?.message}</div>
+        </div>
       )}
     />
   );

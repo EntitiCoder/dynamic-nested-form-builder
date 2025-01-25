@@ -1,10 +1,11 @@
 'use client';
 
-import { FormTypeCreateProfile } from '@/components/form';
 import FormInput from '@/components/form/input';
 import TypeSelect from '@/components/form/type-select';
 import { AddIcon, RemoveIcon } from '@/components/icons';
+import { FormTypeCreateProfile, schema } from '@/libs/formSchema';
 import { Button } from '@heroui/button';
+import { zodResolver } from '@hookform/resolvers/zod';
 import {
   FormProvider,
   useFieldArray,
@@ -12,24 +13,10 @@ import {
   useFormContext,
 } from 'react-hook-form';
 
-export const animals = [
-  { key: 'cat', label: 'Cat' },
-  { key: 'dog', label: 'Dog' },
-  { key: 'elephant', label: 'Elephant' },
-  { key: 'lion', label: 'Lion' },
-  { key: 'tiger', label: 'Tiger' },
-  { key: 'giraffe', label: 'Giraffe' },
-  { key: 'dolphin', label: 'Dolphin' },
-  { key: 'penguin', label: 'Penguin' },
-  { key: 'zebra', label: 'Zebra' },
-  { key: 'shark', label: 'Shark' },
-  { key: 'whale', label: 'Whale' },
-  { key: 'otter', label: 'Otter' },
-  { key: 'crocodile', label: 'Crocodile' },
-];
-
 export default function ProfileForm() {
-  const form = useForm<FormTypeCreateProfile>();
+  const form = useForm<FormTypeCreateProfile>({
+    resolver: zodResolver(schema),
+  });
   const {
     control,
     handleSubmit,
@@ -37,35 +24,26 @@ export default function ProfileForm() {
   } = form;
 
   return (
-    <>
-      <form
-        className="flex flex-col gap-4"
-        onSubmit={handleSubmit((data) => {
-          console.log('Form submitted: 🎉', data);
-        })}
-      >
-        <h1 className="text-lg text-center font-bold">Profile Form</h1>
-        <FormProvider {...form}>
-          <CreateNewCategory />
-        </FormProvider>
-        <button
-          className="px-4 py-2 bg-blue-600 rounded-lg text-white"
-          type="submit"
-        >
-          Submit
-        </button>
-      </form>
-      {/* <DevTool control={control} /> */}
-    </>
+    <form
+      className="flex flex-col gap-4"
+      onSubmit={handleSubmit((data) => {
+        console.log('Form submitted: 🎉', data);
+      })}
+    >
+      <h1 className="text-lg text-center font-bold">Profile Form</h1>
+      <FormProvider {...form}>
+        <CreateNewCategory />
+      </FormProvider>
+      <Button color="primary" type="submit">
+        Submit
+      </Button>
+    </form>
   );
 }
 
 const CreateNewCategory = () => {
   const methods = useFormContext();
-  const {
-    control,
-    formState: { errors },
-  } = methods;
+  const { control } = methods;
   const { append, remove, fields } = useFieldArray({
     name: 'category',
     control,
@@ -89,10 +67,7 @@ const CreateNewCategory = () => {
               <RemoveIcon />
             </Button>
           </div>
-          <CreateNewCategoryField
-            control={control}
-            categoryIndex={categoryIndex}
-          />
+          <CreateNewCategoryField categoryIndex={categoryIndex} />
         </div>
       ))}
       <Button
@@ -107,11 +82,10 @@ const CreateNewCategory = () => {
 
 const CreateNewCategoryField = ({
   categoryIndex,
-  control,
 }: {
   categoryIndex: number;
-  control: any;
 }) => {
+  const { control } = useFormContext();
   const { append, remove, fields } = useFieldArray({
     name: `category.${categoryIndex}.fields`,
     control,
@@ -123,7 +97,7 @@ const CreateNewCategoryField = ({
       {fields.map((categoryField, categoryFieldIndex) => (
         <div
           key={categoryField.id}
-          className="flex flex-col gap-2  pl-5 pt-4 md:flex-row"
+          className="flex flex-col gap-2  pl-5 pt-3 md:flex-row"
         >
           <div className="flex gap-2 md:block">
             <FormInput
@@ -139,7 +113,6 @@ const CreateNewCategoryField = ({
               <RemoveIcon />
             </Button>
           </div>
-
           <div className="block md:flex md:gap-2 md:items-start">
             <TypeSelect
               name={`category.${categoryIndex}.fields.${categoryFieldIndex}.value`}

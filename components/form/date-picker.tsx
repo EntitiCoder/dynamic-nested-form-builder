@@ -11,6 +11,10 @@ interface FormDatePickerProps extends DatePickerProps {
   isTimeRange?: boolean;
 }
 
+const formatDate = (date: any) => {
+  return `${date.year}-${String(date.month).padStart(2, '0')}-${String(date.day).padStart(2, '0')}`;
+};
+
 const FormDatePicker = ({
   name,
   control,
@@ -21,18 +25,33 @@ const FormDatePicker = ({
     <Controller
       name={name}
       control={control}
-      render={({ field }) => (
-        <>
+      render={({ field: { onChange }, fieldState: { error, invalid } }) => (
+        <div>
           {isTimeRange ? (
-            <DateRangePicker aria-label="datePicker" className="md:w-[300px]" />
+            <DateRangePicker
+              onChange={(newValue: any) => {
+                const formattedValue = JSON.stringify({
+                  start: formatDate(newValue.start),
+                  end: formatDate(newValue.end),
+                });
+                onChange(formattedValue);
+              }}
+              aria-label="datePicker"
+              className="md:w-[300px]"
+            />
           ) : (
             <DatePicker
+              onChange={(newValue: any) => {
+                const formattedValue = formatDate(newValue);
+                onChange(formattedValue);
+              }}
               aria-label="datePicker"
               className="md:w-[300px]"
               {...props}
             />
           )}
-        </>
+          <div className="text-red-600 text-sm mt-2 ml-2">{error?.message}</div>
+        </div>
       )}
     />
   );
