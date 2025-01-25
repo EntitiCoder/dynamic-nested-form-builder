@@ -1,17 +1,38 @@
-import { DatePicker, DatePickerProps } from '@heroui/date-picker';
+import {
+  DatePicker,
+  DatePickerProps,
+  DateRangePicker,
+} from '@heroui/date-picker';
 import { Controller } from 'react-hook-form';
 
 interface FormDatePickerProps extends DatePickerProps {
+  name: string;
   control: any;
+  isTimeRange?: boolean;
 }
 
-const FormDatePicker = ({ control, ...props }: FormDatePickerProps) => {
+const FormDatePicker = ({
+  name,
+  control,
+  isTimeRange,
+  ...props
+}: FormDatePickerProps) => {
   return (
     <Controller
-      name="groups"
+      name={name}
       control={control}
       render={({ field }) => (
-        <DatePicker className="max-w-[284px]" label="date" {...props} />
+        <>
+          {isTimeRange ? (
+            <DateRangePicker aria-label="datePicker" className="md:w-[300px]" />
+          ) : (
+            <DatePicker
+              aria-label="datePicker"
+              className="md:w-[300px]"
+              {...props}
+            />
+          )}
+        </>
       )}
     />
   );

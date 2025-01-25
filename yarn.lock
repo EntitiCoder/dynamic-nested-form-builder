@@ -444,6 +444,22 @@
   resolved "https://registry.yarnpkg.com/@heroui/dom-animation/-/dom-animation-2.1.2.tgz#e04609ae1585096e187967701af098fae13f7eee"
   integrity sha512-DX5zGe60gjKIk1sYMPGgR4shOsfpL/1xH0EN18o0SyBiJuGtrii2nXW+0sbsapsW6KzqVYMmXzfVhWkAWR190Q==
 
+"@heroui/dropdown@^2.3.10":
+  version "2.3.10"
+  resolved "https://registry.yarnpkg.com/@heroui/dropdown/-/dropdown-2.3.10.tgz#e73fd6216dfdc548a1a8b5cc03d142e30dea5ea9"
+  integrity sha512-T2W5RjInzjU2yiksiYc19Wt0QNU5GUtoiYvT3lrYtRUdOTeWgQ19/Q3zLSxDXaZkf5fYFC0KqaJ52cvJApmNPw==
+  dependencies:
+    "@heroui/aria-utils" "2.2.8"
+    "@heroui/menu" "2.2.10"
+    "@heroui/popover" "2.3.10"
+    "@heroui/react-utils" "2.1.4"
+    "@heroui/shared-utils" "2.1.3"
+    "@react-aria/focus" "3.19.0"
+    "@react-aria/menu" "3.16.0"
+    "@react-aria/utils" "3.26.0"
+    "@react-stately/menu" "3.9.0"
+    "@react-types/menu" "3.9.13"
+
 "@heroui/form@2.1.8":
   version "2.1.8"
   resolved "https://registry.yarnpkg.com/@heroui/form/-/form-2.1.8.tgz#e8330af878e38514da231331554917ceb38adcfe"
@@ -570,6 +586,25 @@
     "@react-types/menu" "3.9.13"
     "@react-types/shared" "3.26.0"
     "@tanstack/react-virtual" "3.11.2"
+
+"@heroui/menu@2.2.10":
+  version "2.2.10"
+  resolved "https://registry.yarnpkg.com/@heroui/menu/-/menu-2.2.10.tgz#857b0d2fd3d0e6c897371587d7b2e0f276a6326d"
+  integrity sha512-gfiD/E56Xxn1UshnuyBcM+MxJcLUDcSGL1sxoMC5IbNVOdKhdoK4d9eBEEfgTgV+qer83KrMG+yFyBiOjA7nXw==
+  dependencies:
+    "@heroui/aria-utils" "2.2.8"
+    "@heroui/divider" "2.2.6"
+    "@heroui/react-utils" "2.1.4"
+    "@heroui/shared-utils" "2.1.3"
+    "@heroui/use-is-mobile" "2.2.3"
+    "@react-aria/focus" "3.19.0"
+    "@react-aria/interactions" "3.22.5"
+    "@react-aria/menu" "3.16.0"
+    "@react-aria/utils" "3.26.0"
+    "@react-stately/menu" "3.9.0"
+    "@react-stately/tree" "3.8.6"
+    "@react-types/menu" "3.9.13"
+    "@react-types/shared" "3.26.0"
 
 "@heroui/navbar@2.2.8":
   version "2.2.8"
@@ -968,6 +1003,11 @@
     react-simple-animate "^3.3.12"
     use-deep-compare-effect "^1.8.1"
     uuid "^8.3.2"
+
+"@hookform/resolvers@^3.10.0":
+  version "3.10.0"
+  resolved "https://registry.yarnpkg.com/@hookform/resolvers/-/resolvers-3.10.0.tgz#7bfd18113daca4e57e27e1205b7d5a2d371aa59a"
+  integrity sha512-79Dv+3mDF7i+2ajj7SkypSKHhl1cbln1OGavqrsF7p6mbUv11xpqpacPsGDCTRvCSjEEIez2ef1NveSVL3b0Ag==
 
 "@humanwhocodes/config-array@^0.13.0":
   version "0.13.0"
@@ -1871,6 +1911,17 @@
   dependencies:
     "@react-stately/overlays" "^3.6.13"
     "@react-types/tooltip" "^3.4.14"
+    "@swc/helpers" "^0.5.0"
+
+"@react-stately/tree@3.8.6":
+  version "3.8.6"
+  resolved "https://registry.yarnpkg.com/@react-stately/tree/-/tree-3.8.6.tgz#85dc33c5d5b9a455ffc0b474300957e511db1ea4"
+  integrity sha512-lblUaxf1uAuIz5jm6PYtcJ+rXNNVkqyFWTIMx6g6gW/mYvm8GNx1G/0MLZE7E6CuDGaO9dkLSY2bB1uqyKHidA==
+  dependencies:
+    "@react-stately/collections" "^3.12.0"
+    "@react-stately/selection" "^3.18.0"
+    "@react-stately/utils" "^3.10.5"
+    "@react-types/shared" "^3.26.0"
     "@swc/helpers" "^0.5.0"
 
 "@react-stately/tree@^3.8.6":
