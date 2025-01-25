@@ -17,7 +17,7 @@ const FormInput = ({ name, control, ...props }: FormInputProps) => {
       }) => (
         <div>
           <Input
-            className="w-[180px] md:w-[300px]"
+            className="md:w-[300px]"
             onChange={onChange}
             placeholder="Type something..."
             errorMessage={error?.message}

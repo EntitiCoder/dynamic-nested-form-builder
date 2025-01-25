@@ -82,7 +82,7 @@ const TypeSelect = ({ name, control, ...props }: TypeSelectProps) => {
   };
 
   return (
-    <div className="flex items-start gap-4">
+    <div className="flex flex-col items-start gap-4 md:flex-row">
       {renderComponent(selectedKey)}
       <Controller
         name={name}

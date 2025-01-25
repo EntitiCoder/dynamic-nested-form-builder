@@ -77,9 +77,9 @@ const CreateNewCategory = () => {
       {fields.map((category, categoryIndex) => (
         <div
           key={category.id}
-          className="flex flex-col gap-4 p-2 border border-gray-200 rounded-lg"
+          className="flex flex-col p-2 border border-gray-200 rounded-lg"
         >
-          <div className="flex gap-2 ">
+          <div className="flex gap-2">
             <FormInput
               name={`category.${categoryIndex}.title`}
               control={control}
@@ -119,11 +119,11 @@ const CreateNewCategoryField = ({
   });
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex divide-y-2 flex-col gap-4">
       {fields.map((categoryField, categoryFieldIndex) => (
         <div
           key={categoryField.id}
-          className="flex flex-col gap-2  pl-5 md:flex-row"
+          className="flex flex-col gap-2  pl-5 pt-4 md:flex-row"
         >
           <div className="flex gap-2 md:block">
             <FormInput
