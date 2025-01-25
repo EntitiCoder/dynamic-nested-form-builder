@@ -20,9 +20,6 @@ const FormSelect = ({ name, control, options, ...props }: FormSelectProps) => {
       control={control}
       render={({ field }) => (
         <Select className="max-w-xs" aria-label="select" {...props}>
-          {/* {options.map((option) => (
-            <SelectItem key={option.key}>{option.label}</SelectItem>
-          ))} */}
           <>
             {fields.map((category, categoryIndex) => (
               <SelectItem key={category.id}>abc</SelectItem>

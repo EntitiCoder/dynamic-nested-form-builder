@@ -7,13 +7,20 @@ export const schema = z.object({
         title: z.string().min(1, 'Title is required'),
         fields: z
           .array(
-            z.object({
-              title: z.string().min(1, 'Field title is required'),
-              value: z.union([
-                z.array(z.any()).min(1),
-                z.string().min(1, 'Field value must be a non-empty string'),
-              ]),
-            })
+            z.discriminatedUnion('isRequired', [
+              z.object({
+                isRequired: z.literal(true),
+                title: z.string().min(1, 'Field title is required'),
+                value: z.union([
+                  z.array(z.any()).min(1),
+                  z.string().min(1, 'Field value must be a non-empty string'),
+                ]),
+              }),
+              z.object({
+                isRequired: z.literal(false),
+                title: z.string().min(1, 'Field title is required'),
+              }),
+            ])
           )
           .min(1, 'Each category must have at least one field'),
       })

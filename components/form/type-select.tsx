@@ -58,9 +58,9 @@ const TypeSelect = ({ name, control, ...props }: TypeSelectProps) => {
   const renderComponent = (key: string) => {
     switch (key) {
       case 'text':
-        return <FormInput name={name} control={control} />;
+        return <FormInput name={name} control={control} label="Value" />;
       case 'textArea':
-        return <FormTextArea name={name} control={control} />;
+        return <FormTextArea name={name} control={control} label="Value" />;
       case 'url':
         return (
           <FormInput
@@ -68,14 +68,22 @@ const TypeSelect = ({ name, control, ...props }: TypeSelectProps) => {
             type="url"
             control={control}
             placeholder="Type your link..."
+            label="Value"
           />
         );
       case 'select':
         return <FormDropdown name={name} control={control} />;
       case 'singleDate':
-        return <FormDatePicker name={name} control={control} />;
+        return <FormDatePicker name={name} control={control} label="Value" />;
       case 'dateRange':
-        return <FormDatePicker name={name} control={control} isTimeRange />;
+        return (
+          <FormDatePicker
+            name={name}
+            control={control}
+            label="Value"
+            isTimeRange
+          />
+        );
       default:
         return null;
     }

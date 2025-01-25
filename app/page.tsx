@@ -1,10 +1,12 @@
 'use client';
 
+import FormCheckbox from '@/components/form/checkbox';
 import FormInput from '@/components/form/input';
 import TypeSelect from '@/components/form/type-select';
 import { AddIcon, RemoveIcon } from '@/components/icons';
 import { FormTypeCreateProfile, schema } from '@/libs/formSchema';
 import { Button } from '@heroui/button';
+import { DevTool } from '@hookform/devtools';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   FormProvider,
@@ -15,6 +17,19 @@ import {
 
 export default function ProfileForm() {
   const form = useForm<FormTypeCreateProfile>({
+    defaultValues: {
+      category: [
+        {
+          title: '',
+          fields: [
+            {
+              title: '',
+              isRequired: true,
+            },
+          ],
+        },
+      ],
+    },
     resolver: zodResolver(schema),
   });
   const {
@@ -24,20 +39,24 @@ export default function ProfileForm() {
   } = form;
 
   return (
-    <form
-      className="flex flex-col gap-4"
-      onSubmit={handleSubmit((data) => {
-        console.log('Form submitted: 🎉', data);
-      })}
-    >
-      <h1 className="text-lg text-center font-bold">Profile Form Builder</h1>
-      <FormProvider {...form}>
-        <CreateNewCategory />
-      </FormProvider>
-      <Button color="primary" type="submit">
-        Submit
-      </Button>
-    </form>
+    <>
+      <form
+        className="flex flex-col gap-4"
+        onSubmit={handleSubmit((data) => {
+          alert('Form submitted: 🎉');
+          console.log('Form submitted: 🎉', data);
+        })}
+      >
+        <h1 className="text-lg text-center font-bold">Profile Form Builder</h1>
+        <FormProvider {...form}>
+          <CreateNewCategory />
+        </FormProvider>
+        <Button color="primary" type="submit">
+          Submit
+        </Button>
+      </form>
+      <DevTool control={control} placement="top-right" />
+    </>
   );
 }
 
@@ -63,7 +82,11 @@ const CreateNewCategory = () => {
               control={control}
               placeholder="Type your category title ..."
             />
-            <Button isIconOnly onPress={() => remove(categoryIndex)}>
+            <Button
+              color="danger"
+              isIconOnly
+              onPress={() => remove(categoryIndex)}
+            >
               <RemoveIcon />
             </Button>
           </div>
@@ -104,9 +127,11 @@ const CreateNewCategoryField = ({
               name={`category.${categoryIndex}.fields.${categoryFieldIndex}.title`}
               control={control}
               placeholder="Type your field title ..."
+              label="Field"
             />
             <Button
               className="md:hidden"
+              color="danger"
               isIconOnly
               onPress={() => remove(categoryFieldIndex)}
             >
@@ -118,8 +143,14 @@ const CreateNewCategoryField = ({
               name={`category.${categoryIndex}.fields.${categoryFieldIndex}.value`}
               control={control}
             />
+            <FormCheckbox
+              className="mt-2 md:mt-0"
+              name={`category.${categoryIndex}.fields.${categoryFieldIndex}.isRequired`}
+              control={control}
+            />
             <Button
               className="hidden md:flex"
+              color="danger"
               isIconOnly
               onPress={() => remove(categoryFieldIndex)}
             >
@@ -132,7 +163,7 @@ const CreateNewCategoryField = ({
         radius="lg"
         variant="shadow"
         endContent={<AddIcon />}
-        onPress={() => append({ title: '', value: '' })}
+        onPress={() => append({ title: '', value: '', isRequired: true })}
       >
         Create a new field
       </Button>
