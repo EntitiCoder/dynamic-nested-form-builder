@@ -30,7 +30,7 @@ export default function ProfileForm() {
         console.log('Form submitted: 🎉', data);
       })}
     >
-      <h1 className="text-lg text-center font-bold">Profile Form</h1>
+      <h1 className="text-lg text-center font-bold">Profile Form Builder</h1>
       <FormProvider {...form}>
         <CreateNewCategory />
       </FormProvider>
@@ -51,7 +51,7 @@ const CreateNewCategory = () => {
   });
 
   return (
-    <div className="flex flex-col gap-4 ">
+    <div className="flex flex-col gap-4">
       {fields.map((category, categoryIndex) => (
         <div
           key={category.id}
