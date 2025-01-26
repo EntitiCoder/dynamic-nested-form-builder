@@ -33,9 +33,9 @@ const FormDropdown = ({ name, control }: FormDropdownProps) => {
         fieldState: { error, invalid },
       }) => (
         <div>
-          <Dropdown className="w-[300px]" closeOnSelect={false}>
+          <Dropdown className="w-[200px]" closeOnSelect={false}>
             <DropdownTrigger>
-              <Button className="w-[300px]">Options</Button>
+              <Button className="w-[200px]">Options</Button>
             </DropdownTrigger>
             <DropdownMenu aria-label="Options">
               <>

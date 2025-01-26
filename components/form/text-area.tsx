@@ -17,7 +17,7 @@ const FormTextArea = ({ name, control, ...props }: FormTextAreaProps) => {
       }) => (
         <div>
           <Textarea
-            className="md:w-[300px]"
+            className="lg:w-[240px]"
             onChange={onChange}
             placeholder="Type something..."
             {...props}

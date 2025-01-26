@@ -37,7 +37,7 @@ const FormDatePicker = ({
                 onChange(formattedValue);
               }}
               aria-label="datePicker"
-              className="md:w-[300px]"
+              className="lg:w-[240px]"
             />
           ) : (
             <DatePicker
@@ -46,7 +46,7 @@ const FormDatePicker = ({
                 onChange(formattedValue);
               }}
               aria-label="datePicker"
-              className="md:w-[300px]"
+              className="lg:w-[240px]"
               {...props}
             />
           )}

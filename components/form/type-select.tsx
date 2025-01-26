@@ -13,7 +13,7 @@ interface TypeSelectProps {
   control: any;
 }
 
-export const inputTypes = [
+const inputTypes = [
   {
     key: 'input',
     label: 'Input',
@@ -97,8 +97,9 @@ const TypeSelect = ({ name, control, ...props }: TypeSelectProps) => {
         control={control}
         render={({ field, fieldState: { invalid } }) => (
           <Select
-            className="md:w-[300px]"
+            className="lg:w-[240px]"
             aria-label="select"
+            label="Input Type"
             defaultSelectedKeys={['text']}
             onSelectionChange={(keys) =>
               setSelectedKey(keys.currentKey as string)

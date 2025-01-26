@@ -231,7 +231,7 @@ const CreateNewCategoryField = ({
                             {...provided.dragHandleProps}
                           />
                         </div>
-                        <div className="block md:flex md:gap-2 md:items-start">
+                        <div className="block md:flex md:gap-4 md:items-start">
                           <TypeSelect
                             name={`category.${categoryIndex}.fields.${categoryFieldIndex}.value`}
                             control={control}
